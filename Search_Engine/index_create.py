@@ -6,8 +6,11 @@ def get_filenames(file_list):
 	get file names which contains the corpus
 	'''
 	files = []
-	with open(file_list, mode = 'r') as f:
-		files = f.readlines()
+	try:
+		with open(file_list, mode = 'r') as f:
+			files = f.readlines()
+	except OSError:
+		print('Files not available')
 
 	for i,f in enumerate(files):
 		files[i] = os.path.normpath('data'+'/'+ f[:-1])
